@@ -63,13 +63,43 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+var Countries = __webpack_require__(1)
+
+var UI = function () {
+  var countries = new Countries()
+  console.log(countries)
+}
+
+module.exports = UI
+
+
+/***/ },
+/* 1 */
 /***/ function(module, exports) {
 
+var Countries = function () {
+
+}
+
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+var UI = __webpack_require__(0)
+
+var app = function () {
+  new UI()
+}
+
+window.onload = app
 
 
 /***/ }
