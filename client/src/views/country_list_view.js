@@ -1,9 +1,11 @@
 
 var CountryList = function () {
+  this.countries = []
 }
 
 CountryList.prototype = {
   populate: function (countries) {
+    this.countries = countries
     var ul = document.querySelector('#countries-list')
     countries.forEach(function (country) {
       var li = document.createElement('li')
@@ -23,12 +25,14 @@ CountryList.prototype = {
         console.log('changed ', checkbox.value)
         console.log('checked? ', checkbox.checked)
         console.log(this)
-        if (this.checked) {
-          // add to persistent database
-        } else {
-          // remove from persistent database
-        }
       })
+    })
+  },
+
+  tickBoxesInBucketList: function (bucketCountries) {
+    bucketCountries.forEach(function (bucketCountry) {
+      var checkbox = document.querySelector('#' + bucketCountry.name)
+      checkbox.checked = true
     })
   }
 }

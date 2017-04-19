@@ -20,6 +20,17 @@ DBaseQuery.prototype = {
     }.bind(this))
   },
 
+  findCountryByName: function (name, onFound) {
+    MongoClient.connect(this.url, function (err, db) {
+      if (db) {
+        var collection = db.collection(this.collection)
+        collection.find({name: name}).toArray(function (err, docs) {
+          onFound(docs)
+        })
+      }
+    })
+  },
+
   findCountrybyID: function (countryID, onQueryFinished) {
     MongoClient.connect(this.url, function (err, db) {
       if (db) {
