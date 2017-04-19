@@ -18,9 +18,16 @@ CountryList.prototype = {
       ul.appendChild(li)
       li.appendChild(checkbox)
       li.appendChild(label)
+      // TODO refactor this out into a separate controller
       checkbox.addEventListener('change', function () {
         console.log('changed ', checkbox.value)
         console.log('checked? ', checkbox.checked)
+        console.log(this)
+        if (this.checked) {
+
+        } else {
+
+        }
       })
     })
   }
