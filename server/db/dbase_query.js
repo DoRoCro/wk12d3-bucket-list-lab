@@ -1,4 +1,5 @@
 var MongoClient = require('mongodb').MongoClient
+var ObjectID = require('mongodb').ObjectID
 
 var DBaseQuery = function () {
   this.url = 'mongodb://localhost:27017/bucket_list'
@@ -13,6 +14,18 @@ DBaseQuery.prototype = {
         // console.log(this.collection)
         var collection = db.collection(this.collection)
         collection.find().toArray(function (err, docs) {
+          onQueryFinished(docs)
+        })
+      }
+    }.bind(this))
+  },
+
+  findCountrybyID: function (countryID, onQueryFinished) {
+    MongoClient.connect(this.url, function (err, db) {
+      if (db) {
+        // console.log(this.collection)
+        var collection = db.collection(this.collection)
+        collection.find({ _id: ObjectID(countryID)}).toArray(function (err, docs) {
           onQueryFinished(docs)
         })
       }

@@ -24,9 +24,9 @@ CountryList.prototype = {
         console.log('checked? ', checkbox.checked)
         console.log(this)
         if (this.checked) {
-
+          // add to persistent database
         } else {
-
+          // remove from persistent database
         }
       })
     })
