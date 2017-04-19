@@ -67,39 +67,62 @@
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
-/***/ function(module, exports, __webpack_require__) {
-
-var Countries = __webpack_require__(1)
-
-var UI = function () {
-  var countries = new Countries()
-  console.log(countries)
-}
-
-module.exports = UI
-
-
-/***/ },
+/* 0 */,
 /* 1 */
 /***/ function(module, exports) {
 
-var Countries = function () {
+var Countries = function (url) {
+  this.url = url,
+  this.countries = []
+}
+
+Countries.prototype = {
+  getData: function (callback) {
+    var request = new XMLHttpRequest()
+    request.open('GET', this.url)
+
+    request.onload = function () {
+      if (request.status !== 200) return
+      var jsonString = request.responseText
+      var countries = JSON.parse(jsonString)
+      this.countries = countries
+      callback()
+    }.bind(this)
+    request.send()
+  }
 
 }
+
+module.exports = Countries
 
 
 /***/ },
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-var UI = __webpack_require__(0)
+var UI = __webpack_require__(3)
 
 var app = function () {
   new UI()
 }
 
 window.onload = app
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+var Countries = __webpack_require__(1)
+
+var UI = function () {
+  var countries = new Countries('https://restcountries.eu/rest/v1')
+  countries.getData(function () {
+    console.log(countries.countries)
+  })
+}
+
+module.exports = UI
 
 
 /***/ }

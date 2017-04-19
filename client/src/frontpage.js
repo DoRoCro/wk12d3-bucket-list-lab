@@ -1,4 +1,4 @@
-var UI = require('./views/ui')
+var UI = require('./controller/ui')
 
 var app = function () {
   new UI()
