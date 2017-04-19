@@ -114,15 +114,41 @@ window.onload = app
 /***/ function(module, exports, __webpack_require__) {
 
 var Countries = __webpack_require__(1)
+var CountryList = __webpack_require__(4)
 
 var UI = function () {
   var countries = new Countries('https://restcountries.eu/rest/v1')
   countries.getData(function () {
     console.log(countries.countries)
+    var countrylist = new CountryList()
+
+    countrylist.populate(countries.countries)
   })
 }
 
 module.exports = UI
+
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+
+var CountryList = function () {
+}
+
+CountryList.prototype = {
+  populate: function (countries) {
+    var ul = document.querySelector('#countries-list')
+    countries.forEach(function (country) {
+      var li = document.createElement('li')
+      li.innerText = country.name
+      ul.appendChild(li)
+    })
+  }
+}
+
+module.exports = CountryList
 
 
 /***/ }
